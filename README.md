@@ -1,6 +1,12 @@
-# MikeAngularProfile
+# Mike Saprykin Angular Profile Page
+[![StackShare](https://img.shields.io/badge/tech-stack-0690fa.svg?style=flat)](https://stackshare.io/MikeSaprykin/angular-2-cli)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.6.
+## Project description
+This is my personal portfolio profile page, which will contain information about me,
+as a developer, my skills and projects overview. This page will be updated with time
+according to my new skills and projects.
+
+TODO: Edit and finish the readme.
 
 ## Development server
 
