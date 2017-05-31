@@ -10,6 +10,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { storeReducer } from 'app/reducers';
 import { environment } from '../environments/environment';
 import { routing } from 'app/app.routing';
+import {APP_BASE_HREF} from "@angular/common";
 
 export const DEVTOOLS_MODULE = !environment.production ?
   [StoreDevtoolsModule.instrumentOnlyWithExtension()] : [];
@@ -27,7 +28,12 @@ export const DEVTOOLS_MODULE = !environment.production ?
     RouterStoreModule.connectRouter(),
     ...DEVTOOLS_MODULE
   ],
-  providers: [],
+  providers: [
+    {
+      provide: APP_BASE_HREF,
+      useValue: '/'
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
