@@ -21,7 +21,7 @@ describe('layout reducer tests', () => {
       const action: actions.OpenMenuAction = new actions.OpenMenuAction();
 
       const expectedResults: LayoutState = {
-        menu: 'open'
+        sideMenuOpened: true
       };
 
       const result = layoutReducer(undefined, action);

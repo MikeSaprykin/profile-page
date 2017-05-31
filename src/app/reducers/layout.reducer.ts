@@ -1,13 +1,11 @@
 import * as layout from 'app/actions/layout';
 
-export type HeaderMenuState = 'open' | 'closed';
-
 export interface LayoutState {
-  menu: HeaderMenuState
+  sideMenuOpened: boolean
 }
 
 export const INITIAL_STATE: LayoutState = {
-  menu: 'closed'
+  sideMenuOpened: false
 };
 
 export function layoutReducer (
@@ -19,7 +17,7 @@ export function layoutReducer (
     [layout.OPEN_MENU]: (): LayoutState => {
       return {
         ...state,
-        menu: 'open'
+        sideMenuOpened: true
       }
     },
     [layout.CLOSE_MENU]: (): LayoutState => INITIAL_STATE

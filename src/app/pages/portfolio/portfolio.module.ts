@@ -4,11 +4,15 @@ import {
   PortfolioComponent,
   routing
 } from './index';
+import {
+  ContainersModule
+} from "app/containers";
 
 @NgModule({
   imports: [
     CommonModule,
-    routing
+    routing,
+    ContainersModule
   ],
   declarations: [PortfolioComponent]
 })

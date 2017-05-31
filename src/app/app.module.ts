@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
+import { APP_BASE_HREF } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
@@ -10,7 +12,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { storeReducer } from 'app/reducers';
 import { environment } from '../environments/environment';
 import { routing } from 'app/app.routing';
-import {APP_BASE_HREF} from "@angular/common";
+
 
 export const DEVTOOLS_MODULE = !environment.production ?
   [StoreDevtoolsModule.instrumentOnlyWithExtension()] : [];
@@ -21,6 +23,7 @@ export const DEVTOOLS_MODULE = !environment.production ?
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     HttpModule,
     routing,
