@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { AppState } from 'app/reducers';
+import { AppState, getMenuState } from 'app/reducers';
 import {CloseMenuAction, OpenMenuAction} from 'app/actions/layout';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
@@ -24,20 +24,19 @@ export class HeaderComponent {
   public menuOpen$: Observable<boolean>;
   public menuOpenedState: boolean;
 
-  constructor(private store: Store<AppState>) {
-    this.menuOpen$ = store.select('layout', 'sideMenuOpened')
-      .map((value: boolean) => this.menuOpenState(value));
+  constructor(public store: Store<AppState>) {
+    this.menuOpen$ = store.select(getMenuState)
+      .map((value: boolean) => this.mapMenuOpenState(value));
   }
 
-  public menuOpenState(value: boolean) {
+  public mapMenuOpenState(value: boolean): boolean {
     this.menuOpenedState = value;
     return value;
   }
 
   onMenuClick(): void {
-    console.log(this.menuOpenedState);
-      this.menuOpenedState ? this.store.dispatch(new CloseMenuAction()) :
-        this.store.dispatch(new OpenMenuAction());
+    this.menuOpenedState ? this.store.dispatch(new CloseMenuAction()) :
+      this.store.dispatch(new OpenMenuAction());
   }
 
 }

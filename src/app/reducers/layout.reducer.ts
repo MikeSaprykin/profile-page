@@ -26,3 +26,5 @@ export function layoutReducer (
   return lookUp[action.type] ? lookUp[action.type]()
     : state
 }
+
+export const getSideMenuOpenedState = (state: LayoutState): boolean => state.sideMenuOpened;

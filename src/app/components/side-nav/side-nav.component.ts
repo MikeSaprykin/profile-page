@@ -31,6 +31,6 @@ import {
 })
 export class SideNavComponent {
 
-  @Input() openSideNav: boolean;
+  @Input() openSideNav: boolean = false;
 
 }

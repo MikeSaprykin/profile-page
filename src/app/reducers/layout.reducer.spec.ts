@@ -1,7 +1,7 @@
 import {
   layoutReducer,
   INITIAL_STATE,
-  LayoutState
+  LayoutState, getSideMenuOpenedState
 } from './layout.reducer';
 import * as actions from 'app/actions/layout';
 
@@ -37,5 +37,13 @@ describe('layout reducer tests', () => {
       expect(result).toEqual(INITIAL_STATE);
     });
   });
+
+  describe('getSideMenuOpenedState select', () => {
+    it('result should be equal to initial state sideMenuOpened', () => {
+      const result = getSideMenuOpenedState(INITIAL_STATE);
+      expect(result).toEqual(INITIAL_STATE.sideMenuOpened)
+    })
+
+  })
 
 });
