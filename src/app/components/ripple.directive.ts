@@ -15,7 +15,7 @@ type RippleElPosition = 'top' | 'left'
 })
 export class RippleDirective {
 
-  @Input() color: string = 'rgba(0,0,0,0.2)';
+  @Input() rippleColor: string = 'rgba(0, 0, 0, 0.2)';
 
   public element: HTMLElement;
 
@@ -32,7 +32,7 @@ export class RippleDirective {
   }
 
   initRipple({ pageY, pageX }) {
-    if(!this.ripple) this.createRipple();
+    this.createRipple();
     this.setRipplePosition(pageY, pageX);
     this.appendRipple();
   }
@@ -40,7 +40,7 @@ export class RippleDirective {
   public createRipple(): void {
     this.ripple = document.createElement('span');
     this.render.addClass(this.ripple, 'ripple');
-    this.render.setStyle(this.ripple, 'background-color', this.color)
+    this.render.setStyle(this.ripple, 'background-color', this.rippleColor);
   }
 
   public setRipplePosition(pageY: number, pageX: number): void {
@@ -49,19 +49,20 @@ export class RippleDirective {
   }
 
   public generateRipplePosition(coordinate: number,
-                                position: RippleElPosition): number {
+                                position: RippleElPosition): string {
     const client = this.element.getBoundingClientRect();
-    return coordinate - client[position] - this.ripple.offsetHeight / 2 - document.body.scrollTop;
+    return (coordinate - client[position] - this.ripple.offsetHeight / 2 - document.body.scrollTop) + 'px';
   }
 
   public appendRipple(): void {
     this.render.appendChild(this.element, this.ripple);
-    this.initRippleRemoveTimer()
+    this.initRippleRemoveTimer(this.ripple)
   }
 
-  public initRippleRemoveTimer(): void {
-    Observable.timer(700)
-      .subscribe(() => this.render.removeChild(this.element, this.ripple))
+  public initRippleRemoveTimer(ripple: HTMLElement): void {
+    Observable
+      .timer(700)
+      .subscribe(() => this.render.removeChild(this.element, ripple))
   };
 
 }

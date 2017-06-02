@@ -60,13 +60,6 @@ describe('RippleDirective', () => {
       expect(directiveInstance.createRipple).toHaveBeenCalled()
     });
 
-    it('should not call createRipple method', () => {
-      directiveInstance.ripple = document.createElement('span');
-      spyOn(directiveInstance, 'createRipple');
-      directiveInstance.initRipple({ pageX, pageY });
-      expect(directiveInstance.createRipple).not.toHaveBeenCalled()
-    });
-
     it('should call setRipplePosition method', () => {
       spyOn(directiveInstance, 'setRipplePosition');
       directiveInstance.initRipple({ pageX, pageY });
@@ -90,7 +83,7 @@ describe('RippleDirective', () => {
       expect(directiveInstance.ripple).toBeTruthy();
     });
 
-    it('should renderer.setClass on span element', () => {
+    it('should call renderer.setClass on span element', () => {
       spyOn(directiveInstance.render, 'addClass').and.callThrough();
       directiveInstance.createRipple();
       expect(directiveInstance.render.addClass).toHaveBeenCalled();
@@ -101,7 +94,7 @@ describe('RippleDirective', () => {
       spyOn(directiveInstance.render, 'setStyle').and.callThrough();
       directiveInstance.createRipple();
       expect(directiveInstance.render.setStyle).toHaveBeenCalled();
-      expect(directiveInstance.ripple.style.backgroundColor).toEqual('rgba(0, 0, 0, 0.2)');
+      expect(directiveInstance.ripple.style.backgroundColor).toEqual(directiveInstance.rippleColor);
     })
   });
 
@@ -141,7 +134,7 @@ describe('RippleDirective', () => {
 
     it('should return a number', () => {
       const result = directiveInstance.generateRipplePosition(pageX, 'top');
-      expect(typeof result === 'number').toBeTruthy();
+      expect(typeof result === 'string').toBeTruthy();
     })
   });
 
@@ -170,8 +163,9 @@ describe('RippleDirective', () => {
     });
 
     it('should call render.removeChild with timer', fakeAsync(() => {
+      const span = document.createElement('span');
       spyOn(directiveInstance.render, 'removeChild');
-      directiveInstance.initRippleRemoveTimer();
+      directiveInstance.initRippleRemoveTimer(span);
       tick(800);
       expect(directiveInstance.render.removeChild).toHaveBeenCalled();
     }));
