@@ -1,4 +1,4 @@
-import {Directive, ElementRef, Renderer2} from '@angular/core';
+import {Directive, ElementRef, Input, Renderer2} from '@angular/core';
 import {Observable} from "rxjs/Observable";
 import 'rxjs/add/observable/timer';
 
@@ -15,6 +15,8 @@ type RippleElPosition = 'top' | 'left'
 })
 export class RippleDirective {
 
+  @Input() color: string = 'rgba(0,0,0,0.2)';
+
   public element: HTMLElement;
 
   public ripple: HTMLElement;
@@ -26,10 +28,10 @@ export class RippleDirective {
   }
 
   onClick(event: MouseEvent): void {
-    this.initRippleElement(event);
+    this.initRipple(event);
   }
 
-  initRippleElement({ pageY, pageX }) {
+  initRipple({ pageY, pageX }) {
     if(!this.ripple) this.createRipple();
     this.setRipplePosition(pageY, pageX);
     this.appendRipple();
@@ -37,7 +39,8 @@ export class RippleDirective {
 
   public createRipple(): void {
     this.ripple = document.createElement('span');
-    this.render.addClass(this.ripple, 'ripple')
+    this.render.addClass(this.ripple, 'ripple');
+    this.render.setStyle(this.ripple, 'background-color', this.color)
   }
 
   public setRipplePosition(pageY: number, pageX: number): void {
