@@ -1,5 +1,9 @@
 <header>
-  <p>header works!</p>
+  <hamburger
+    (onHamburgerClick)="onMenuClick()"
+    [active]="menuOpen$ | async">
+  </hamburger>
 </header>
-<app-side-nav [openSideNav]="menuState$ | async">
+<app-side-nav [openSideNav]="menuOpen$ | async">
 </app-side-nav>
+

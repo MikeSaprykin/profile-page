@@ -1,30 +1,43 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from 'app/reducers';
 import {CloseMenuAction, OpenMenuAction} from 'app/actions/layout';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
 
 @Component({
   selector: 'app-header',
-  templateUrl: './header.component.html',
+  template: `
+    <header>
+      <hamburger
+        (onHamburgerClick)="onMenuClick()"
+        [active]="menuOpen$ | async">
+      </hamburger>
+    </header>
+    <app-side-nav [openSideNav]="menuOpen$ | async">
+    </app-side-nav>
+  `,
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
 
-  private menuState$: Observable<boolean>;
+  public menuOpen$: Observable<boolean>;
+  public menuOpenedState: boolean;
 
   constructor(private store: Store<AppState>) {
-    this.menuState$ = store.select('layout', 'sideMenuOpened')
+    this.menuOpen$ = store.select('layout', 'sideMenuOpened')
+      .map((value: boolean) => this.menuOpenState(value));
   }
 
-  ngOnInit() {
-    setTimeout(() => {
-      this.store.dispatch(new OpenMenuAction)
-    }, 500);
+  public menuOpenState(value: boolean) {
+    this.menuOpenedState = value;
+    return value;
+  }
 
-    setTimeout(() => {
-      this.store.dispatch(new CloseMenuAction)
-    }, 1500)
+  onMenuClick(): void {
+    console.log(this.menuOpenedState);
+      this.menuOpenedState ? this.store.dispatch(new CloseMenuAction()) :
+        this.store.dispatch(new OpenMenuAction());
   }
 
 }

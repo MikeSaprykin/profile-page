@@ -5,16 +5,27 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 import {
-  flyInOut
+  slideInOutLeft,
+  fadeInOut
 } from "app/components/animations";
 
 @Component({
   selector: 'app-side-nav',
-  templateUrl: './side-nav.component.html',
+  template: `
+    <div class="overlay"
+         *ngIf="openSideNav"
+         [@fadeInOut]>
+    </div>
+    <div class="side-nav"
+         *ngIf="openSideNav"
+         [@slideInOutLeft]>
+    </div>
+  `,
   styleUrls: ['./side-nav.component.scss'],
   encapsulation: ViewEncapsulation.None,
   animations: [
-    flyInOut()
+    slideInOutLeft(),
+    fadeInOut()
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
