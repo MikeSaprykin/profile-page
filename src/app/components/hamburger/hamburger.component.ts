@@ -7,7 +7,9 @@ import {
   selector: 'hamburger',
   template: `
     <div [class.active]="active"
-         (click)="onHamburgerClick.emit()">
+         (click)="onHamburgerClick.emit()"
+         ripple
+    >
       <span></span>
       <span></span>
       <span></span>
