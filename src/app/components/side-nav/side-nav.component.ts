@@ -12,10 +12,8 @@ import {
 @Component({
   selector: 'app-side-nav',
   template: `
-    <div class="overlay"
-         *ngIf="openSideNav"
-         [@fadeInOut]>
-    </div>
+    <overlay [showOverlay]="openSideNav">
+    </overlay>
     <div class="side-nav"
          *ngIf="openSideNav"
          [@slideInOutLeft]>
@@ -24,8 +22,7 @@ import {
   styleUrls: ['./side-nav.component.scss'],
   encapsulation: ViewEncapsulation.None,
   animations: [
-    slideInOutLeft(),
-    fadeInOut()
+    slideInOutLeft()
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })

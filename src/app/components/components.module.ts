@@ -6,6 +6,7 @@ import { HamburgerComponent } from './hamburger/hamburger.component';
 import { MenuComponent } from './menu/menu.component';
 import { MenuDirective } from './menu/menu.directive';
 import { RippleDirective } from './ripple.directive';
+import { OverlayComponent } from './overlay/overlay.component';
 
 @NgModule({
   imports: [
@@ -17,9 +18,11 @@ import { RippleDirective } from './ripple.directive';
     HamburgerComponent,
     MenuComponent,
     MenuDirective,
-    RippleDirective
+    RippleDirective,
+    OverlayComponent
   ],
   exports: [
+    OverlayComponent,
     SideNavComponent,
     HamburgerComponent,
     MenuComponent

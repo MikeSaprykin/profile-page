@@ -1,4 +1,8 @@
+@import '../../../assets/scss/_mixins.scss';
+
 hamburger {
+
+  @include no-user-select();
 
   div {
     display: flex;

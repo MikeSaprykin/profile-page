@@ -4,6 +4,8 @@ import 'rxjs/add/observable/timer';
 
 const TOP = 'top';
 const LEFT = 'left';
+const RIPPLE_BASE_COLOR = 'rgba(0, 0, 0, 0.2)';
+const PX = 'px';
 
 type RippleElPosition = 'top' | 'left'
 
@@ -15,7 +17,7 @@ type RippleElPosition = 'top' | 'left'
 })
 export class RippleDirective {
 
-  @Input() rippleColor: string = 'rgba(0, 0, 0, 0.2)';
+  @Input() rippleColor: string = RIPPLE_BASE_COLOR;
 
   public element: HTMLElement;
 
@@ -51,7 +53,7 @@ export class RippleDirective {
   public generateRipplePosition(coordinate: number,
                                 position: RippleElPosition): string {
     const client = this.element.getBoundingClientRect();
-    return (coordinate - client[position] - this.ripple.offsetHeight / 2 - document.body.scrollTop) + 'px';
+    return (coordinate - client[position] - this.ripple.offsetHeight / 2 - document.body.scrollTop) + PX
   }
 
   public appendRipple(): void {

@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SideNavComponent } from './side-nav.component';
+import {OverlayComponent} from "app/components/overlay/overlay.component";
 
 describe('SideNavComponent', () => {
   let component: SideNavComponent;
@@ -8,7 +9,10 @@ describe('SideNavComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SideNavComponent ]
+      declarations: [
+        SideNavComponent,
+        OverlayComponent
+      ]
     })
     .compileComponents();
   }));
