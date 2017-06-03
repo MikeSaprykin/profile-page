@@ -7,6 +7,8 @@ import { MenuComponent } from './menu/menu.component';
 import { MenuDirective } from './menu/menu.directive';
 import { RippleDirective } from './ripple.directive';
 import { OverlayComponent } from './overlay/overlay.component';
+import { CarouselComponent } from './carousel/carousel.component';
+import { CarouselPipe } from './carousel/carousel.pipe';
 
 @NgModule({
   imports: [
@@ -19,9 +21,12 @@ import { OverlayComponent } from './overlay/overlay.component';
     MenuComponent,
     MenuDirective,
     RippleDirective,
-    OverlayComponent
+    OverlayComponent,
+    CarouselComponent,
+    CarouselPipe
   ],
   exports: [
+    CarouselComponent,
     OverlayComponent,
     SideNavComponent,
     HamburgerComponent,

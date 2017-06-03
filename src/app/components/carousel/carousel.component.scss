@@ -1,0 +1,23 @@
+carousel {
+
+  display: block;
+  height: 400px;
+  position: relative;
+
+  div {
+    height: 100%;
+    width: 100%;
+
+    &.carousel-item {
+      position: absolute;
+      background-position: center center;
+      background-size: cover;
+    }
+
+    nav {
+      position: absolute;
+      bottom: -20px;
+    }
+  }
+
+}

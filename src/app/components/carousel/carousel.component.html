@@ -1,0 +1,15 @@
+<div>
+  <div
+    class="carousel-item"
+    *ngFor="let item of carouseItems | carousel"
+    [@slideInRight]="item.enter"
+    [ngStyle]="generateCarouselItemBg(item)"
+  >
+  </div>
+  <nav class="carousel-buttons">
+    <button *ngFor="let item of carouseItems; let i = index"
+            (click)="toggleItem(item)">
+      {{ i + 1 }}
+    </button>
+  </nav>
+</div>

@@ -9,6 +9,7 @@ import 'rxjs/add/operator/map';
   selector: 'app-header',
   template: `
     <header>
+      <carousel></carousel>
       <hamburger
         (onHamburgerClick)="onMenuClick()"
         [active]="menuOpen$ | async">
